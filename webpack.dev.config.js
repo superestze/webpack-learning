@@ -1,10 +1,10 @@
-path = require('path');
-HtmlWebpackPlugin = require('html-webpack-plugin')
+var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.export = {
     entry: './src/index.js',
     output: {
-        path: __dirname,
+        path: path.resolve(__dirname, 'dist')
         filename: './dist/bundle.js'
     },
     module: {
@@ -21,9 +21,11 @@ module.export = {
             template:'./index.html'
         })
     ],
-    dev_server:{
-        contentBase:path.join(__dirname, './dist'),
-        open: true,
-        port:9000
+    devtool: 'inline-source-map',
+    devServer:{
+        contentBase: path.join(__dirname, "./dist"),
+        port: 9000,
+        compress: true,
+        hot: true
     }
 }
